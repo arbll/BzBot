@@ -1,0 +1,3 @@
+//Auto generated @<%= Time.now.strftime("%d/%m/%Y %H:%M") %>
+
+#pragma once

@@ -1,0 +1,24 @@
+<%= render "header", binding %>
+
+#include "stdafx.h"
+#include "cryptedscripts.h"
+#include "aes.h"
+#include "kernel.h"
+#include "sync.h"
+
+static unsigned char key[] = { <%= aes_key_cpp %> };
+static unsigned char iv[] = { <%= aes_iv_cpp %> };
+
+static const CryptedScripts::crypted_script_t scripts[] =
+{
+	<% cryptedscripts.each do |key, value| %>
+	{"<%= value[0] %>", "<%= value[1] %>", <%= value[2] %>}<% if value != cryptedscripts.values.last %>,<% end %>
+	<% end %>
+};
+
+void CryptedScripts::_getScriptA(short id, char* buffer)
+{
+	HANDLE mutex = Kernel::waitForMutexOfObject(MUTEX_SCRIPT_AES);
+	AES128_CBC_decrypt_buffer((unsigned char *)buffer, (unsigned char *)scripts[id].encryptedScript, scripts[id].size, key, iv);
+	Sync::_freeMutex(mutex);
+}

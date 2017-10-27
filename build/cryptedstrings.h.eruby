@@ -1,0 +1,33 @@
+<%= render "header", binding %>
+
+#define CSTRW(var, id) WCHAR var[CryptedStrings::len_##id]; CryptedStrings::_getW(CryptedStrings::id_##id, var);
+#define CSTRA(var, id) char var[CryptedStrings::len_##id]; CryptedStrings::_getA(CryptedStrings::id_##id, var);
+
+namespace CryptedStrings
+{
+	typedef struct
+	{
+		unsigned char key;   //Clef de décodage XOR sur un byte
+		unsigned short size; //Taille du string
+		char *encodedString; //String encodé
+	}crypted_string_t;
+
+	//Liste des id de string
+	enum
+	{
+		<% cryptedstrings.each do |key, value| %>
+		id_<%= key %><% if value != cryptedstrings.values.last %>,<% end %>
+		<% end %>
+	};
+
+	//List des tailles de string
+	enum
+	{
+		<% cryptedstrings.each do |key, value| %>
+		len_<%= key %> = <%= value[2] %> + 1<% if value != cryptedstrings.values.last %>,<% end %>
+		<% end %>
+	};
+
+	void _getA(WORD id, LPSTR buffer);
+	void _getW(WORD id, LPWSTR buffer);
+}

@@ -1,0 +1,30 @@
+<%= render "header", binding %>
+
+#define CSCRA(var, id) char var[CryptedScripts::len_##id]; CryptedScripts::_getScriptA(CryptedScripts::id_##id, var);
+#define MUTEX_SCRIPT_AES 0x43500
+
+namespace CryptedScripts
+{
+	typedef struct
+	{
+		char* nameHash;
+		char* encryptedScript;
+		unsigned short size;
+	}crypted_script_t;
+
+	enum
+	{
+		<% cryptedscripts.each do |key, value| %>
+		id_<%= key %><% if value != cryptedscripts.values.last %>,<% end %>
+		<% end %>
+	};
+
+	enum
+	{
+		<% cryptedscripts.each do |key, value| %>
+		len_<%= key %> = <%= value[2] %><% if value != cryptedscripts.values.last %>,<% end %>
+		<% end %>
+	};
+
+	void _getScriptA(short id, char* buffer);
+};

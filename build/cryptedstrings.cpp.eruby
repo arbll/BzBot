@@ -1,0 +1,25 @@
+<%= render "header", binding %>
+#include "stdafx.h"
+#include "cryptedstrings.h"
+
+//Liste des String encodes
+static const CryptedStrings::crypted_string_t strings[] =
+{
+	<% cryptedstrings.each do |key, value| %>
+	{<%= value[1] %>, <%= value[2] %>, "<%= value[0].to_s %>"}<% if value != cryptedstrings.values.last %>,<% end %>
+	<% end %>
+};
+
+void CryptedStrings::_getA(WORD id, LPSTR buffer)
+{
+  crypted_string_t *s = (CryptedStrings::crypted_string_t *)&strings[id];
+  for(unsigned short i = 0; i < s->size; i++)buffer[i] = (s->encodedString[i] ^ s->key);
+  buffer[s->size] = 0;
+}
+
+void CryptedStrings::_getW(WORD id, LPWSTR buffer)
+{
+  crypted_string_t *s = (CryptedStrings::crypted_string_t *)&strings[id];
+  for(unsigned short i = 0; i < s->size; i++)buffer[i] = (s->encodedString[i] ^ s->key) & 0xff;
+  buffer[s->size] = 0;
+}

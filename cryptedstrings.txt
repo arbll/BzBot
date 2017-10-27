@@ -1,0 +1,55 @@
+windows_shellexec_open					open
+
+regpath_autorun							Software\Microsoft\Windows\Currentversion\Run
+regkey_autorun							FastUpdate
+
+path_core								Adobe\Merge\Merge.exe
+path_update								Adobe\Merge\Update\git.exe
+path_infodatabase						Adobe\Merge\en-EN\merge_en.i18n
+
+bot_param_update						fuAC
+
+lua_error_bad_signature					BAD_SIGNATURE
+lua_error_system						SYSTEM_ERROR
+
+lua_lib_windows							windows
+lua_lib_windows_messagebox				messagebox
+lua_lib_windows_getfolder				getfolder
+lua_lib_windows_cryptunprotecthexdata	cryptunprotecthexdata
+
+lua_lib_sqlite3							sqlite3
+lua_lib_sqlite3_open					open
+lua_lib_sqlite3_gettable				gettable
+lua_lib_sqlite3_close					close
+
+lua_lib_database						database
+lua_lib_database_add					add
+
+lua_lib_bzp								bzp
+lua_lib_bzp_validate					validate
+
+http_test_url							http://msn.com
+
+protocol_http							http://
+protocol_https							https://
+
+http_header_separator					: 
+http_header_content_type_post			Content-Type: application/x-www-form-urlencoded
+
+http_user_agent							Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.85 Safari/537.36
+http_method_post						POST
+http_method_get							GET
+http_version							HTTP/1.1
+http_separator							/
+http_param_begin						?
+http_param_separator					&
+http_param_equal						=
+
+bz_protocol_validate					/news/news.php
+bz_protocol_upload						/news/gameapi.php
+bz_protocol_get_cmds					/news/character.php
+bz_protocol_param_id					id
+bz_protocol_param_data_type				server
+bz_protocol_param_data					serialized
+bz_protocol_data_public_key				-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCB51CkiJPZjZsw4aXRgF6OjQJ\n9wlYRn15EPqR+LdssoIl1W62OZ7noS6fZ0HqgjTLPZA+F7oPF3Z9Khv7B2Ud1nBM\nK82h79ZzmYTVw9FBoKssg/mMDVQbEsK0X/z4fDXQ6/DsxRBfvV6FAOm7nrqbryCo\n7ZgcV9+VbSxUhN5o7QIDAQAB\n-----END PUBLIC KEY-----
+bz_protocol_validate_public_key			-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCB51CkiJPZjZsw4aXRgF6OjQJ\n9wlYRn15EPqR+LdssoIl1W62OZ7noS6fZ0HqgjTLPZA+F7oPF3Z9Khv7B2Ud1nBM\nK82h79ZzmYTVw9FBoKssg/mMDVQbEsK0X/z4fDXQ6/DsxRBfvV6FAOm7nrqbryCo\n7ZgcV9+VbSxUhN5o7QIDAQAB\n-----END PUBLIC KEY-----
